@@ -6,6 +6,11 @@
   flex-grow: 1;
   position: relative;
 
+  .name {
+    font-size: 30px;
+    font-weight: 300;
+  }
+
   .label {
     text-transform: uppercase;
     font-size: 48px;

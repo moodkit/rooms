@@ -4,23 +4,31 @@ import PropTypes from 'prop-types'
 import './BookNow.css'
 
 export default class BookNow extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {minutes: 15};
+  }
 
   static propTypes = {
     book: PropTypes.func,
-    minutes: PropTypes.number
   }
 
-  static defaultProps = {
-    book: () => { },
-    minutes: 15
+  picked(range) {
+    this.state.minutes = range
   }
 
   render() {
-    const { book, minutes } = this.props
+    const { book } = this.props
 
     return (
-      <button className="BookNow" onClick={book}>{`Book now for ${Math.min(15, minutes)}'`}</button>
+        <div>
+          <div className="RangeGroup">
+            <button className={this.state.minutes === 15 ? 'Range selected': 'Range'} onClick={() => this.picked(15)}>{`15 minutes`}</button>
+            <button className={this.state.minutes === 30 ? 'Range selected': 'Range'} onClick={() => this.picked(30)}>{`30 minutes`}</button>
+            <button className={this.state.minutes === 60 ? 'Range selected': 'Range'} onClick={() => this.picked(60)}>{`60 minutes`}</button>
+          </div>
+          <button className="BookNow" onClick={() => book(this.state.minutes)}>{`Book now`}</button>
+        </div>
     )
   }
-
 }

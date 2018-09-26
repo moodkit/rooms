@@ -38,8 +38,8 @@ app.post('/api/rooms/:room', function (req, res, next) {
 
     let event = {
       start: now.startOf('minute'),
-      end: moment.min(now.clone().add(15, 'minute'), freeSlot.end), // Make sure we don't overbook the room
-      summary: 'Flash meeting'
+      end: moment.min(now.clone().add(req.query.minutes, 'minute'), freeSlot.end), // Make sure we don't overbook the room
+      summary: 'busy'
     }
 
     calendar.bookEvent(req.params.room, event, (err, newEvent) => {

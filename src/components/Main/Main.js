@@ -12,14 +12,16 @@ export default class Main extends PureComponent {
 
   static defaultProps = {
     label: '',
-    time: ''
+    time: '',
+    slug: 'Dijkstra'
   }
 
   render() {
-    const { children, label, time } = this.props
+    const { children, label, time, slug } = this.props
 
     return (
       <div className="Main">
+        <div className="name">{slug}</div>
         <div className="label">{label}</div>
         <div className="time">{time}</div>
         { children }

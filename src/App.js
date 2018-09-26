@@ -74,6 +74,7 @@ export default class App extends Component {
     this.fetchSchedule()
     this.fetchInterval = setInterval(() => this.fetchSchedule(), 30 * 1000)
     this.updateInterval = setInterval(() => this.updateTime(), 1 * 1000)
+
   }
 
   componentWillUnmount() {
@@ -87,21 +88,21 @@ export default class App extends Component {
       .then(({ name, schedule }) => this.setState({ name, schedule }, this.updateTime))
   }
 
-  book = () => {
+  book = (minutes) => {
     let { now, schedule } = this.state
     let freeSlot = schedule.find((s) => now.isBetween(s.start, s.end) && s.available)
 
     schedule.push({
       start: now.startOf('minute'),
-      end: moment.min(now.clone().add(15, 'minute'), moment(freeSlot.end)),
-      summary: 'Flash meeting'
+      end: moment.min(now.clone().add(minutes, 'minute'), moment(freeSlot.end)),
+      summary: 'busy'
     })
 
     schedule = unifySchedule(schedule)
 
     this.setState({ schedule }, this.updateTime)
 
-    fetch(`/api/rooms/${this.state.slug}`, { method: 'POST' })
+    fetch(`/api/rooms/${this.state.slug}?minutes=${minutes}`, { method: 'POST' } )
       .then(response => response.json())
       .then(({ name, schedule }) => this.setState({ name, schedule }, this.updateTime))
   }
@@ -151,11 +152,13 @@ export default class App extends Component {
       }
     }
 
+    mainProps.slug = slug
+
     return (
       !isLoading ? (
         <div className={cn('App', state)}>
           <Helmet>
-            <title>{name}</title>
+            <title>{slug}</title>
             <link rel="icon" type="image/x-icon" href={`/${state}.ico`} />
           </Helmet>
           <Main {...mainProps}>

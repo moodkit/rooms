@@ -1,5 +1,38 @@
 @import '../../variables.css';
 
+.RangeGroup {
+  bottom: 1em;
+}
+
+.RangeGroup button {
+  background-color: #008080; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.Range.selected {
+  background-color: #FF4500;
+}
+
+.RangeGroup button:not(:last-child) {
+  border-right: 0; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.RangeGroup:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.RangeGroup button:hover {
+  background-color: #FFA500;
+}
+
 .BookNow {
   position: absolute;
   bottom: 2em;
