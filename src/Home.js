@@ -40,7 +40,8 @@ export default class Home extends Component {
     return (
       !isLoading ?
         <div className={cn('Home')}>
-          <table className={cn('Table')} align="left">
+          <h1>G5-7 Meeting room list</h1>
+          <table className={cn('Table')}>
             <thead className={cn('Head')}>
             <tr>
               <th>Name</th>
