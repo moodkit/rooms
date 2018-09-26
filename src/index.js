@@ -9,7 +9,7 @@ render((
   <BrowserRouter>
     <div>
       <Route exact path="/" component={Home} />
-      <Route path="/:room?" component={App} />
+      <Route path="/:room" component={App} />
     </div>
   </BrowserRouter>
 ), document.querySelector('#app'))
