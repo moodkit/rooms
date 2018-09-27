@@ -33,7 +33,7 @@ export default class Home extends Component {
         <td className={cn('floor')}>{rooms[key].floor}</td>
         <td className={cn('size')}>{rooms[key].size}</td>
         <td className={cn('whiteboard')}>{rooms[key].whiteboard === true ? <p>&#10004;</p> : null}</td>
-        <td className={cn('availability')}>Free</td>
+        <td className={cn('availability')}>{key.length % 2 ? "FREE": "OCCUPIED"}</td>
         <td className={cn('note')}>{rooms[key].note}</td>
       </tr>)
     }

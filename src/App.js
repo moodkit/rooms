@@ -123,6 +123,7 @@ export default class App extends Component {
 
   render() {
     const { name, slug, now, isLoading, isAvailable, currentEvent, nextEvent, nextFreeSlot } = this.state
+
     const state = isAvailable ? 'free' : 'busy'
 
     let minutesLeft, timeLeft, mainProps = { label: state }, eventProps = {}
